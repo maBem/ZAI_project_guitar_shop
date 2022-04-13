@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div class="page-title">Logowanie</div>
+
+<div class="login-container">
+    <h3>Wprowadź login i hasło</h3>
+    <br>
+    <!-- /login?error=true -->
+    <th:block th:if="${#session != null && #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}">
+        <div th:if= "${#request.getParameter('error') == 'true'}"
+             style="color: red; margin: 10px 0px;">
+            Logowanie nie powiodło się<br />
+        </div>
+    </th:block>
+
+    <form method="POST"
+          th:action="@{/j_spring_security_check}">
+        <table style="margin-left: auto; margin-right: auto; ">
+            <tr>
+                <td class="login-labels-style">Nazwa użytkownika:</td>
+                <td><input type="text" class="login-user-input" name="userName" /></td>
+            </tr>
+            <tr>
+                <td class="login-labels-style">Hasło:</td>
+                <td><input type="password" class="login-pass-input" name="password" /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="submit" class="login-submit" value="Zaloguj" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <span class="error-message" th:utext="${error}"></span>
+</div>
+
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

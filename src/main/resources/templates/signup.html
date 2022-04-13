@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div class="page-title">Rejestracja</div>
+
+<div class="login-container">
+    <h3>Wprowadź dane</h3>
+
+    <form method="POST" th:object="${signUpForm}" th:action="@{/admin/signup}">
+        <table style="margin-left: auto; margin-right: auto; ">
+            <tr>
+                <td class="login-labels-style">Nazwa użytkownika:</td>
+                <td><input class="signup-name-form" th:field="*{userName}"/></td>
+                <td>
+                  <span class="error-message"
+                        th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">..</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="login-labels-style">Email:</td>
+                <td><input class="signup-email-form" th:field="*{email}" /></td>
+                <td>
+                  <span class="error-message"
+                        th:if="${#fields.hasErrors('email')}" th:errors="*{email}">..</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="login-labels-style">Hasło:</td>
+                <td><input type="password" class="signup-pass-form" th:field="*{password}" /></td>
+                <td>
+                  <span class="error-message"
+                        th:if="${#fields.hasErrors('password')}" th:errors="*{password}">..</span>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="submit" class="login-submit" value="Zarejestruj" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+
+<th:block th:include="/_footer"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista produktów</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
+<div class="page-title">Lista zamówień</div>
+<div>Łączna liczba zamówień: <span th:utext="${paginationResult.totalRecords}"></span></div>
+<table class="order-list-table">
+    <tr class="table-order-title-tr">
+        <th>Numer zamówienia</th>
+        <th>Data zamówienia</th>
+        <th>Nazwa klienta</th>
+        <th>Adres klienta</th>
+        <th>Email klienta</th>
+        <th>Kwota</th>
+        <th>Widok zamówienia</th>
+    </tr>
+    <tr class="table-order-tr" th:each="orderInfo : ${paginationResult.list}">
+        <td th:utext="${orderInfo.orderNum}"></td>
+        <td th:utext="${#dates.format(orderInfo.orderDate,'dd-MM-yyyy HH:mm')}"></td>
+        <td th:utext="${orderInfo.customerName}"></td>
+        <td th:utext="${orderInfo.customerAddress}"></td>
+        <td th:utext="${orderInfo.customerEmail}"></td>
+        <td style="color:red;" th:utext="${#numbers.formatDecimal(orderInfo.amount,3,2,'COMMA')}">
+        </td>
+        <td><a style="text-decoration: none; font-weight: bold;" th:href="@{|/admin/order?orderId=${orderInfo.id}|}">Widok</a></td>
+    </tr>
+</table>
+
+<div class="page-navigator" th:if="${paginationResult.totalPages > 1}" >
+    <th:block th:each="page: ${paginationResult.navigationPages}">
+        <a th:if="${page != -1}" class="nav-item"
+           th:href="@{|/admin/orderList?page=${page}|}" th:utext="${page}"></a>
+
+        <span th:if="${page == -1}" class="nav-item"> ... </span>
+    </th:block>
+</div>
+<th:block th:include="/_footer"></th:block>
+
+</th:block>
+</body>
+</html>
