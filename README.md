@@ -4,6 +4,12 @@
 ### Main page
 ![image](https://user-images.githubusercontent.com/76697567/163184603-1d1cbcf6-211f-4021-8129-76ea2b2fa6e9.png)
 
+### Registration
+![image](https://user-images.githubusercontent.com/76697567/163187074-1b59100a-ac54-43a1-89a6-9ec3b279d52d.png)
+
+### Login
+![image](https://user-images.githubusercontent.com/76697567/163187180-5a80572c-1fdf-410d-8000-a66e4341b050.png)
+
 ### Products list
 ![image](https://user-images.githubusercontent.com/76697567/163184942-6f953add-70dd-4be2-9cb8-728d29babfef.png)
 
